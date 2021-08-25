@@ -22,6 +22,7 @@ export const CategoryTitle = styled.div`
     width: 26px;
     height: 15px;
     margin-top: 8px;
+    margin-bottom: 8px;
     ${
         props => css`
             ${skeletonStyle(props.light)}
