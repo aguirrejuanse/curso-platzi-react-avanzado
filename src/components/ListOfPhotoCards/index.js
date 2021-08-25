@@ -1,28 +1,13 @@
-//DEPENDENCIES
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { withPhotos } from "../../hoc/withPhotos";
+import React from 'react'
+import { PhotoCard } from '../PhotoCard'
 
-//COMPONENTS
-import { PhotoCard } from "../PhotoCard";
-
-export const ListOfPhotoCards = ({ categoryId }) => {
-  const { loading, error, data } = useQuery(withPhotos, {
-    variables: { categoryId }
-  });
-
-  if (error) {
-    return <h2>Internal Server Error</h2>;
-  }
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-
+export const ListOfPhotoCardsComponent = ({ data }) => {
+  console.log(data)
   return (
     <ul>
       {data.photos.map((photo) => (
-        <PhotoCard key={photo.id} {...photo} />
+        <PhotoCard key={photo.id} id={photo.id} {...photo} />
       ))}
     </ul>
-  );
-};
+  )
+}
