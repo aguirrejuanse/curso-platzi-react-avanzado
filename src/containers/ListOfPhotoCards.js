@@ -1,6 +1,7 @@
 import React from 'react'
-import { useQuery } from "@apollo/client";
 import { ListOfPhotoCardsComponent } from '../components/ListOfPhotoCards/index'
+import { PhotoCard } from '../components/PhotoCard';
+import { useQuery } from "@apollo/client";
 import { withPhotos } from '../hoc/withPhotos'
 
 export const ListOfPhotoCards = ({ categoryId }) => {
@@ -12,7 +13,7 @@ export const ListOfPhotoCards = ({ categoryId }) => {
     return <h2>Internal Server Error</h2>;
   }
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <PhotoCard loading={loading}/>;
   }
 
   return <ListOfPhotoCardsComponent data={data} />
