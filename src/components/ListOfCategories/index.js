@@ -1,32 +1,30 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Category } from '../Category'
 
 import { List, Item } from './styles'
 
-const useCategoriesData = () => {
+function useCategoriesData () {
   const [categories, setCategories] = useState([])
-
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    setLoading(!loading)
-    fetch('https://petgram-server-aguirrejuanse.vercel.app/categories')
+  useEffect(function () {
+    setLoading(true)
+    window.fetch('https://petgram-server-aguirrejuanse.vercel.app/categories')
       .then(res => res.json())
       .then(response => {
         setCategories(response)
-        setLoading(!loading)
-      }, [])
-  })
+        setLoading(false)
+      })
+  }, [])
 
   return { categories, loading }
 }
 
 export const ListOfCategories = () => {
+  const { categories, loading } = useCategoriesData()
   const [showFixed, setShowFixed] = useState(false)
 
-  const { categories, loading } = useCategoriesData()
-
-  useEffect(() => {
+  useEffect(function () {
     const onScroll = e => {
       const newShowFixed = window.scrollY > 200
       showFixed !== newShowFixed && setShowFixed(newShowFixed)
