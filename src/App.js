@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
-import { ListOfCategories } from './components/ListOfCategories';
-import { ListOfPhotoCards } from './containers/ListOfPhotoCards'
+import React from 'react';
 import { Logo } from './components/Logo';
-import { PhotoCard } from './components/PhotoCard';
 import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery';
 import { GlobalStyle } from './styles/GlobalStyles';
+import   Home   from './pages/Home';
+import { Route, Router, BrowserRouter, Switch } from 'react-router-dom';
 
 
 export const App = () => {
@@ -15,15 +14,18 @@ export const App = () => {
     <div>
       <GlobalStyle />
       <Logo />
-      {
-        detailId
+        {
+          detailId
           ? <PhotoCardWithQuery id={detailId} />
-          : 
-          <Fragment>
-            <ListOfCategories />
-            <ListOfPhotoCards categoryId={5} />
-          </Fragment>
-      }
+          :
+          <BrowserRouter>
+            <Switch>
+              <Route path='/pet/:id' component={Home} />
+              <Route path='/' component={Home} />
+            </Switch>
+          </BrowserRouter>
+        }
     </div>
+    
   )
 }

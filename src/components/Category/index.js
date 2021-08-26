@@ -5,7 +5,7 @@ import { ContainerCategorySkeleton, CategoryImage, CategoryTitle } from './style
 const DEFAULT_IMAGE = "https://i.imgur.com/dJa0Hpl.jpg"
 
 export const CategorySkeleton = props => {
-  console.log(props)
+  
   return (
       <ContainerCategorySkeleton>
           <CategoryImage light={props.light} />

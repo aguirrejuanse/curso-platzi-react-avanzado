@@ -49,7 +49,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
           showLoadingAnimation={true}
           customPlaceholder={photoCardSkeleton}
         >
-          <React.Fragment>
+          <Fragment>
             <a href={`/?detail=${id}`}>
               <ImgWrapper>
                 <Img src={src} />
@@ -68,7 +68,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
                 }
               }
             </ToggleLikeMutation>
-          </React.Fragment>
+          </Fragment>
         </ReactPlaceholder>
       )}
     </Article>

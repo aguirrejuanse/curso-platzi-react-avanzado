@@ -2,7 +2,7 @@ import React from 'react'
 import { PhotoCard } from '../PhotoCard'
 
 export const ListOfPhotoCardsComponent = ({ data }) => {
-  console.log(data)
+  
   return (
     <ul>
       {data.photos.map((photo) => (

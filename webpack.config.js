@@ -1,8 +1,17 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  entry: ['@babel/polyfill', './src/index.js'],
   output: {
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
+    publicPath: '/'
+  },
+  mode: 'development',
+  devServer: {
+    historyApiFallback: {
+      disableDotRule: true
+    },
+    liveReload: true
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -12,9 +21,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'graphql-tag/loader'
+      },
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   }
