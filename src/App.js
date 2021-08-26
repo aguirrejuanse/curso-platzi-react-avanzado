@@ -3,7 +3,7 @@ import { Logo } from './components/Logo';
 import { PhotoCardWithQuery } from './containers/PhotoCardWithQuery';
 import { GlobalStyle } from './styles/GlobalStyles';
 import   Home   from './pages/Home';
-import { Route, Router, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Router, BrowserRouter, Switch, Link } from 'react-router-dom';
 
 
 export const App = () => {
@@ -11,21 +11,21 @@ export const App = () => {
   const detailId = urlParams.get('detail')
 
   return (
-    <div>
+    <BrowserRouter>
       <GlobalStyle />
       <Logo />
         {
           detailId
           ? <PhotoCardWithQuery id={detailId} />
           :
-          <BrowserRouter>
+          <>
             <Switch>
               <Route path='/pet/:id' component={Home} />
               <Route path='/' component={Home} />
             </Switch>
-          </BrowserRouter>
+          </>
         }
-    </div>
+    </BrowserRouter>
     
   )
 }

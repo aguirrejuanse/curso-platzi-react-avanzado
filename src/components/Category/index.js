@@ -1,5 +1,5 @@
 import React from 'react'
-import { Anchor, Image } from './styles'
+import { Link, Image } from './styles'
 import { ContainerCategorySkeleton, CategoryImage, CategoryTitle } from './styles';
 
 const DEFAULT_IMAGE = "https://i.imgur.com/dJa0Hpl.jpg"
@@ -14,9 +14,9 @@ export const CategorySkeleton = props => {
   )
 }
 
-export const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?' }) => (
-  <Anchor href={path}>
+export const Category = ({ cover = DEFAULT_IMAGE, path='#', emoji = '?' }) => (
+  <Link to={path}>
     <Image src={cover} />
     {emoji}
-  </Anchor>
+  </Link>
 )

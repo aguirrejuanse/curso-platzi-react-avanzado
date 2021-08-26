@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { skeletonStyle } from '../../styles/skeleton/style';
+import { Link as LinkRouter } from 'react-router-dom';
 
 export const ContainerCategorySkeleton = styled.div`
     display: flex;
@@ -32,7 +33,7 @@ export const CategoryTitle = styled.div`
 
 //
 
-export const Anchor = styled.a`
+export const Link = styled(LinkRouter)`
   display:flex;
   flex-direction:column;
   text-align: center;

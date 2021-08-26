@@ -6,6 +6,7 @@ module.exports = {
     filename: 'app.bundle.js',
     publicPath: '/'
   },
+  devtool: "source-map",
   mode: 'development',
   devServer: {
     historyApiFallback: {
