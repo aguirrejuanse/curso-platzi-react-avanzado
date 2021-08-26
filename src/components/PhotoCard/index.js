@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
-import { ImgWrapper, Img, Button, Article } from './styles'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+import { ImgWrapper, Img, Article } from './styles'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import ReactPlaceholder from "react-placeholder"
 import { TextBlock, RectShape, RoundShape } from "react-placeholder/lib/placeholders"
+import { FavButton } from '../FavButton'
+import { ToggleLikeMutation } from '../../hooks/useToggleLikeMutation'
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
 
@@ -13,7 +14,19 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
   const key = `like-${id}`
   const [liked, setLiked] = useLocalStorage(key, false)
 
-  const Icon = liked ? MdFavorite : MdFavoriteBorder
+  //toggleLike
+  // const { mutation, mutationLoading, mutationError } = useToggleLikeMutation()
+
+  // const handleFavClick = () => {
+  //   !liked && mutation({
+  //     variables: {
+  //       input: { id }
+  //     }
+  //   })
+  //   setLiked(!liked)
+  // }
+
+  // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
 
   const photoCardSkeleton = (
     <React.Fragment>
@@ -27,7 +40,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
       </div>
     </React.Fragment>
   )
-  
+
   return (
     <Article ref={element}>
       {show && (
@@ -42,9 +55,19 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
                 <Img src={src} />
               </ImgWrapper>
             </a>
-            <Button onClick={() => setLiked(!liked)}>
-              <Icon size="32px" /> {likes} likes!
-            </Button>
+            <ToggleLikeMutation >
+              {
+                (toggleLike) => {
+                  const handleFavClick = () => {
+                    !liked && toggleLike({ variables: {
+                      input : {id}
+                    }})
+                    setLiked(!liked)
+                  }
+                  return <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
+                }
+              }
+            </ToggleLikeMutation>
           </React.Fragment>
         </ReactPlaceholder>
       )}
