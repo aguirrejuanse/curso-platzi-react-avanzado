@@ -8,13 +8,13 @@ const SIZE = "32px";
 function index() {
   return (
     <Nav>
-      <Link to="/">
+      <Link exact to="/">
         <MdHome size={SIZE} />
       </Link>
-      <Link to="/favs">
+      <Link exact to="/favs">
         <MdFavoriteBorder size={SIZE} />
       </Link>
-      <Link to="/user">
+      <Link exact to="/user">
         <MdPersonOutline size={SIZE} />
       </Link>
     </Nav>
