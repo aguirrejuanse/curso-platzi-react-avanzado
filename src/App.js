@@ -12,9 +12,9 @@ export const App = () => (
     <GlobalStyle />
     <Logo />
     <Switch>
+      <Route path="/detail/:detailId" component={Detail} />
       <Route path="/pet/:id" component={Home} />
       <Route path="/" component={Home} />
-      <Route path="/detail/:detailId" component={Detail} />
     </Switch>
     <NavBar />
   </BrowserRouter>
