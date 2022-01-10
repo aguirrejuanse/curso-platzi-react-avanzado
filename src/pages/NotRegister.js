@@ -6,7 +6,7 @@ import { AppContext } from "../Context";
 
 const NotRegister = () => {
   const { activateAuth } = useContext(AppContext);
-  const { registerMutation } = useRegisterMutation();
+  const { registerMutation, error, data, loading } = useRegisterMutation();
 
   const onSubmit = ({ email, password }) => {
     const input = { email, password };
@@ -14,10 +14,22 @@ const NotRegister = () => {
     registerMutation({ variables: variable }).then(() => activateAuth());
   };
 
+  const errorMsg = error && "El usuario ya existe o hay algún problema";
+
   return (
     <>
-      <UserForm title="Registrarse" onSubmit={onSubmit} />
-      <UserForm title="Iniciar sesión" onSubmit={activateAuth} />
+      <UserForm
+        disabled={loading}
+        error={errorMsg}
+        title="Registrarse"
+        onSubmit={onSubmit}
+      />
+      <UserForm
+        disabled={loading}
+        error={errorMsg}
+        title="Iniciar sesión"
+        onSubmit={activateAuth}
+      />
     </>
   );
 };
