@@ -22,7 +22,10 @@ const NotRegister = () => {
     const input = { email, password };
     const variable = { input };
     registerMutation({ variables: variable })
-      .then(() => activateAuth())
+      .then(({ data }) => {
+        const { signup } = data;
+        activateAuth(signup);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -30,7 +33,10 @@ const NotRegister = () => {
     const input = { email, password };
     const variables = { input };
     loginMutation({ variables })
-      .then(() => activateAuth())
+      .then(({ data }) => {
+        const { login } = data;
+        activateAuth(login);
+      })
       .catch((err) => console.log(err));
   };
 
