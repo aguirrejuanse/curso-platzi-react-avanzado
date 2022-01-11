@@ -6,6 +6,7 @@ import {
   RectShape,
   RoundShape,
 } from "react-placeholder/lib/placeholders";
+import PropTypes from "prop-types";
 
 import { ImgWrapper, Img, Article } from "./styles";
 import { FavButton } from "../FavButton";
@@ -90,4 +91,17 @@ export const PhotoCard = ({
       )}
     </Article>
   );
+};
+
+PhotoCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  liked: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  likes: function (props, propName) {
+    const propValue = props[propName];
+
+    if (!propValue) return new Error(`${propName} value must be defined`);
+    if (propValue < 0)
+      return new Error(`${propName} value must greater than 0`);
+  },
 };
