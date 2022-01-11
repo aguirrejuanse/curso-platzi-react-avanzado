@@ -1,20 +1,20 @@
-import React, { Fragment } from 'react'
-import { ListOfCategories } from '../components/ListOfCategories/index'
-import { ListOfPhotoCards } from '../containers/ListOfPhotoCards'
-import { withRouter } from'react-router-dom'
-import { useParams } from 'react-router';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { useParams } from "react-router";
 
-// se puede obtener el id por props pero prefiero useParams
-//{ id }
+import { ListOfCategories } from "../components/ListOfCategories/index";
+import { ListOfPhotoCards } from "../containers/ListOfPhotoCards";
+import Layout from "../components/Layout";
+
 const Home = () => {
-  const { id } = useParams()
+  const { id } = useParams();
 
   return (
-    <Fragment>
+    <Layout title="Tu app de fotos de mascotas">
       <ListOfCategories />
       <ListOfPhotoCards categoryId={parseFloat(id)} />
-    </Fragment>
-  )
-}
+    </Layout>
+  );
+};
 
-export default withRouter(Home)
+export default withRouter(Home);
