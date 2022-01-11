@@ -13,15 +13,7 @@ export const ListOfPhotoCards = ({ categoryId }) => {
     return <h2>Internal Server Error</h2>;
   }
   if (loading) {
-    return (
-      <PhotoCard
-        loading={loading}
-        likes={1}
-        src={`Photo ${categoryId}`}
-        id={`Photo ${categoryId}`}
-        liked={true}
-      />
-    );
+    return <PhotoCard loading={loading} />;
   }
 
   return <ListOfPhotoCardsComponent data={data} />;

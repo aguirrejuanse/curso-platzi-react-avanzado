@@ -19,10 +19,9 @@ const getPhoto = (id) => {
   const { loading, error, data } = useQuery(getSinglePhoto, {
     variables: { id },
   });
-  if (loading)
-    return <PhotoCard loading={loading} likes={1} src={`Photo ${id}`} />;
+  if (loading) return <PhotoCard loading={loading} />;
   if (error) return <h2>Error...</h2>;
-  return <PhotoCard id={id} loading={loading} likes={1} />;
+  return <PhotoCard id={id} {...data.photo} />;
 };
 
 export const PhotoCardWithQuery = ({ id }) => <>{getPhoto(id)}</>;
