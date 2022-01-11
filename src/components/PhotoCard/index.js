@@ -95,7 +95,7 @@ export const PhotoCard = ({
 
 PhotoCard.propTypes = {
   id: PropTypes.string.isRequired,
-  liked: PropTypes.number.isRequired,
+  liked: PropTypes.bool.isRequired,
   src: PropTypes.string.isRequired,
   likes: function (props, propName) {
     const propValue = props[propName];
