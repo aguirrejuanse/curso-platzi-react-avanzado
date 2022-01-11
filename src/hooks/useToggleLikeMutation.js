@@ -14,22 +14,20 @@
 //   return { mutation, mutationLoading, mutationError }
 // }
 
-import React from 'react'
-import { gql } from '@apollo/client'
-import { Mutation } from '@apollo/client/react/components';
+import React from "react";
+import { gql } from "@apollo/client";
+import { Mutation } from "@apollo/client/react/components";
 
 const LIKE_PHOTO = gql`
-mutation likeAnonymousPhoto($input: LikePhoto!) {
-  likeAnonymousPhoto(input: $input) {
-    id,
-    liked,
-    likes
+  mutation likeAnonymousPhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
+      id
+      liked
+      likes
+    }
   }
-}
-`
+`;
 
 export const ToggleLikeMutation = ({ children }) => {
-  return <Mutation mutation={LIKE_PHOTO}>
-    {children}
-  </Mutation>
-}
+  return <Mutation mutation={LIKE_PHOTO}>{children}</Mutation>;
+};

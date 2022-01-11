@@ -1,25 +1,28 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import ReactPlaceholder from "react-placeholder";
-
-import { ImgWrapper, Img, Article } from "./styles";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useNearScreen } from "../../hooks/useNearScreen";
 import {
   TextBlock,
   RectShape,
   RoundShape,
 } from "react-placeholder/lib/placeholders";
+
+import { ImgWrapper, Img, Article } from "./styles";
 import { FavButton } from "../FavButton";
+import { useNearScreen } from "../../hooks/useNearScreen";
 import { ToggleLikeMutation } from "../../hooks/useToggleLikeMutation";
 
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
 
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
+export const PhotoCard = ({
+  id,
+  liked,
+  likes = 0,
+  src = DEFAULT_IMAGE,
+  loading,
+}) => {
   const [show, element] = useNearScreen();
-  const key = `like-${id}`;
-  const [liked, setLiked] = useLocalStorage(key, false);
 
   //toggleLike
   // const { mutation, mutationLoading, mutationError } = useToggleLikeMutation()
@@ -67,13 +70,11 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE, loading }) => {
             <ToggleLikeMutation>
               {(toggleLike) => {
                 const handleFavClick = () => {
-                  !liked &&
-                    toggleLike({
-                      variables: {
-                        input: { id },
-                      },
-                    });
-                  setLiked(!liked);
+                  toggleLike({
+                    variables: {
+                      input: { id },
+                    },
+                  });
                 };
                 return (
                   <FavButton
